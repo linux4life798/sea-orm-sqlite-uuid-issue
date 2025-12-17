@@ -1,5 +1,6 @@
 Sea-ORM is saving UUIDs as binary blobs in sqlite, even though the [documentation]
 *seems* to suggest that it would save as text.
+See issue https://github.com/SeaQL/sea-orm/issues/2856 .
 
 [documentation]: https://www.sea-ql.org/SeaORM/docs/generate-entity/column-types/#type-mappings
 
