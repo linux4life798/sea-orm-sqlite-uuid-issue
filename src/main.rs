@@ -22,15 +22,14 @@ async fn main() -> Result<(), sea_orm::DbErr> {
 
     let env = env_logger::Env::default().filter_or("RUST_LOG", "info,sea_orm=debug,sqlx=warn");
     env_logger::Builder::from_env(env).init();
-
-    use sea_orm::{entity::*, query::*};
     let db = &sea_orm::Database::connect("sqlite://db.sqlite?mode=rwc").await?;
 
+    info!("Syncing schema");
     db.get_schema_registry("sea_orm_sqlite_uuid_issue::*")
         .sync(db)
         .await?;
 
-    info!("Create user Bob with a profile:");
+    info!("Create user Bob with a profile");
     user::ActiveModel::builder()
         .set_name("Bob")
         .set_id(Uuid::now_v7())
